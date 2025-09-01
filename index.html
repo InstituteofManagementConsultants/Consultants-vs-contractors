@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO 20700:2017 - Learning Activity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f2f2f2;
+        }
+        /* Custom brand colors for Tailwind */
+        .brand-text-dark { color: #025159; }
+        .brand-bg-dark { background-color: #025159; }
+        .brand-text-light { color: #96ccd9; }
+        .brand-bg-light { background-color: #96ccd9; }
+        .brand-text-accent-yellow { color: #f2d98d; }
+        .brand-bg-accent-yellow { background-color: #f2d98d; }
+        .brand-text-accent-gold { color: #d98e04; }
+        .brand-bg-accent-gold { background-color: #d98e04; }
+        .brand-border-dark { border-color: #025159; }
+
+        /* General interactive styles */
+        .interactive-element {
+            transition: all 0.2s ease-in-out;
+        }
+        .interactive-element:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* For the flip card */
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Accordion for Key Steps has been removed */
+        
+        /* Drag and Drop Sorting Game */
+        .drop-zone {
+            min-height: 150px;
+            transition: background-color 0.3s;
+        }
+        .drop-zone.drag-over {
+            background-color: #f2d98d !important; /* brand-bg-accent-yellow */
+            border-style: solid;
+        }
+        .task-item {
+            cursor: grab;
+        }
+        .task-item:active {
+            cursor: grabbing;
+        }
+        
+        /* Quiz Styles */
+        .quiz-option {
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .quiz-option:hover {
+            background-color: #e0f7ff; /* Lighter blue */
+        }
+        .quiz-option.selected {
+            background-color: #96ccd9; /* brand-bg-light */
+            color: #025159; /* brand-text-dark */
+        }
+        .quiz-option.correct {
+            background-color: #d1fae5; /* Green 100 */
+            border-color: #10b981; /* Green 500 */
+        }
+        .quiz-option.incorrect {
+            background-color: #fee2e2; /* Red 100 */
+            border-color: #ef4444; /* Red 500 */
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <main class="container mx-auto max-w-6xl p-4 md:p-8">
+        
+        <!-- Section 1: Definition -->
+        <section id="definition" class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-xl font-bold brand-text-dark mb-4">1. Management Consulting is…</h2>
+            <div class="brand-bg-light p-6 rounded-lg text-gray-900">
+                <blockquote class="border-l-4 brand-border-dark pl-4 italic">
+                    "… a set of professional practices provided by one or more qualified persons to an organization, aimed at improving its performance. This is achieved through the analysis of existing organizational problems and the development of plans for improvement."
+                </blockquote>
+                <p class="mt-4 text-sm text-right">- Paraphrased from industry definitions and ISO 20700 principles.</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Consulting vs Contracting -->
+        <section id="comparison" class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-xl font-bold brand-text-dark mb-4">2. ‘Management Consulting’ vs. ‘Contracting’</h2>
+            <p class="mb-6">While both roles provide external expertise, their focus and approach differ significantly. A consultant advises on 'what' to do and 'why', while a contractor is often hired to 'do' a specific task.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="border-2 border-dashed brand-border-dark rounded-lg p-4 bg-blue-50">
+                    <h3 class="text-lg font-semibold brand-text-dark mb-2 text-center">Management Consultant</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Focus:</strong> Strategic advice, problem-solving, improving performance.</li>
+                        <li><strong>Role:</strong> Advisor, facilitator, analyst.</li>
+                        <li><strong>Deliverable:</strong> Recommendations, strategies, business cases, implementation plans.</li>
+                        <li><strong>Value:</strong> Provides external perspective, specialized expertise, and objectivity.</li>
+                        <li><strong>Goal:</strong> To enable the client to solve a problem or seize an opportunity.</li>
+                    </ul>
+                </div>
+                <div class="border-2 border-dashed border-gray-400 rounded-lg p-4 bg-gray-50">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2 text-center">Contractor / Freelancer</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Focus:</strong> Executing specific tasks, filling a resource gap.</li>
+                        <li><strong>Role:</strong> Doer, temporary team member.</li>
+                        <li><strong>Deliverable:</strong> Completed work, code, designs, project milestones.</li>
+                        <li><strong>Value:</strong> Provides specific skills or extra capacity to deliver a defined output.</li>
+                        <li><strong>Goal:</strong> To complete a pre-defined scope of work.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Perception -->
+        <section id="perception" class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-xl font-bold brand-text-dark mb-4">3. How is ‘Management Consulting’ Perceived?</h2>
+            <p class="mb-6">Perceptions of consulting vary widely. Click on the cards below to see different viewpoints and the common reasons behind them.</p>
+            <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="flip-card h-56 interactive-element" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front brand-bg-dark text-white shadow-md">
+                            <h3 class="text-xl font-bold brand-text-accent-yellow">The Client Executive</h3>
+                            <p class="mt-2 text-sm">(Click to flip)</p>
+                        </div>
+                        <div class="flip-card-back brand-bg-light text-gray-900 shadow-md">
+                            <h4 class="font-semibold mb-2">Viewpoint: "Strategic Partner"</h4>
+                            <p class="text-sm">"They bring valuable external insights and specialized skills we lack internally to solve our biggest challenges."</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="flip-card h-56 interactive-element" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front brand-bg-dark text-white shadow-md">
+                            <h3 class="text-xl font-bold brand-text-accent-yellow">The Internal Employee</h3>
+                            <p class="mt-2 text-sm">(Click to flip)</p>
+                        </div>
+                        <div class="flip-card-back brand-bg-light text-gray-900 shadow-md">
+                            <h4 class="font-semibold mb-2">Viewpoint: "Necessary Evil?"</h4>
+                            <p class="text-sm">"They can disrupt our work, but sometimes they help leadership see issues we've raised for years. They get paid a lot to tell us what we already know."</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="flip-card h-56 interactive-element" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front brand-bg-dark text-white shadow-md">
+                             <h3 class="text-xl font-bold brand-text-accent-yellow">The General Public</h3>
+                             <p class="mt-2 text-sm">(Click to flip)</p>
+                        </div>
+                        <div class="flip-card-back brand-bg-light text-gray-900 shadow-md">
+                            <h4 class="font-semibold mb-2">Viewpoint: "Mysterious & Expensive"</h4>
+                            <p class="text-sm">"It's a high-paying, high-pressure job. They create slide decks and reports, but what do they actually *do*?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sections 4 (Tools & Resources) & 5 (Knowledge Check) have been removed -->
+
+    </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // All JavaScript has been removed as the interactive elements it controlled are no longer present.
+
+});
+</script>
+
+</body>
+</html>
+
